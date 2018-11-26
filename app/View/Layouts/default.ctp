@@ -40,7 +40,7 @@
         <link rel="shortcut icon" href="assets/images/common/favicon.ico">
         <link rel="apple-touch-icon-precomposed" href="images/common/apple-touch-icon-precomposed.png">
         <?php echo $this->Html->css(['bootstrap.min.css', 'style',]); ?>
-        <?php echo $this->Html->script(['app', 'jquery-3.1.1.min', 'blog']); ?>
+        <?php echo $this->Html->script(['app', 'jquery-3.1.1.min', 'blog', 'modernizr.js']); ?>
         <style>
             .error-message {
                 color: red;
@@ -56,15 +56,19 @@
         <div class="l-wrap js-wrap">
             <!--start header-->
             <?php 
-                $user = in_array($this->params['action'], $guest_pages) ? 'guest' : 'admin';
+                $user = (in_array($this->params['action'], $admin_pages)) ? 'admin' : 'guest';
                 echo $this->element('/headers/' . $user . '_header');
             ?>
             <!--end header-->
-
-            <?php echo $this->fetch('content'); ?>
-
+            <div>
+                <?php echo $this->fetch('content'); ?>
+            </div>
             <!--footer ここから-->
-            <?php echo $this->element('/footers/footer'); ?>
+            <?php
+                if ($this->params['action'] != 'login') {
+                    echo $this->element('/footers/footer');
+                }
+            ?>
             <!--footer ここまで-->
         </div>
     </body>

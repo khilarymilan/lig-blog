@@ -47,16 +47,21 @@ class AppController extends Controller {
     ];
 
     public function beforeFilter() {
+        $admin_pages = ['list', 'add', 'edit', 'login'];
         $guest_pages = ['index', 'archive', 'view'];
         $this->Auth->allow($guest_pages);
-        $this->set(compact('guest_pages'));
+
+        $this->set(compact('admin_pages', 'guest_pages'));
     }
 
     public function setFlashMessage($type, $message) {
-        if ($type == 'success') {
-            $this->Flash->success($message, ['key' => 'success']);
-        } else {
-            $this->Flash->error($message, ['key' => 'error']);
+        switch ($type) {
+            case 'success':
+                $this->Flash->success($message, ['key' => $type]);
+                break;
+            case 'error':
+                $this->Flash->error($message, ['key' => $type]);
+                break;
         }
     }
 }

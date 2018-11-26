@@ -17,8 +17,24 @@
             <?php 
                 echo $this->Form->input('id');
                 echo $this->Form->hidden('image');
-                echo $this->Form->input('title', ['label' => ['text' => 'TITLE', 'class' => 'form-title'], 'class' => 'input input-text', 'div' => false, 'required' => false]);
-                echo $this->Form->input('body', ['label' => ['text' => 'CONTENTS', 'class' => 'form-title'], 'class' => 'input input-contents', 'div' => false, 'required' => false]);
+                echo $this->Form->input('title', [
+                    'label' => [
+                        'text' => 'TITLE', 
+                        'class' => 'form-title'
+                    ], 
+                    'class' => 'input input-text', 
+                    'div' => false, 
+                    'required' => false
+                ]);
+                echo $this->Form->input('body', [
+                    'label' => [
+                        'text' => 'CONTENTS',
+                        'class' => 'form-title'
+                    ],
+                    'class' => 'input input-contents',
+                    'div' => false,
+                    'required' => false
+                ]);
             ?>  
             <label for="submit" class="form-button">
                 <div class="button">
